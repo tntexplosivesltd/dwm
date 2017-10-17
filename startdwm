@@ -1,0 +1,13 @@
+# Log stderror to a file
+#xrandr --output eDP-1 --off
+gnome-settings-daemon&
+gnome-screensaver&
+sleep 4 && (conky | while read LINE; do xsetroot -name "$LINE"; done) &
+$HOME/.dropbox-dist/dropboxd &
+sleep 4 && nm-applet&
+wmname LG3D
+while true; do
+    dwm 2> ~/.dwm.log
+    # No error logging
+    #dwm >/dev/null 2>&1
+done

@@ -1,13 +1,13 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const char font[]            = "Monospace 10";
+static const char font[]            = "Monospace 9";
 static const char normbordercolor[] = "#444444";
-static const char normbgcolor[]     = "#222222";
+static const char normbgcolor[]     = "#005577";
 static const char normfgcolor[]     = "#bbbbbb";
-static const char selbordercolor[]  = "#005577";
-static const char selbgcolor[]      = "#005577";
-static const char selfgcolor[]      = "#eeeeee";
+static const char selbordercolor[]  = "#cccccc";
+static const char selbgcolor[]      = "#cccccc";
+static const char selfgcolor[]      = "#000000";
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int systrayspacing = 0;   /* systray spacing */
@@ -56,17 +56,19 @@ static const Layout layouts[] = {
 /* commands */
 /*static char dmenumon[2] = "0";*/ /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
-static const char *termcmd[]  = { "xfce4-terminal", NULL };
+static const char *termcmd[]  = { "urxvt", NULL };
 static const char *lockcmd[]  = { "gnome-screensaver-command", "-l", NULL };
 static const char *blup[]  = { "xbacklight", "-inc", "10", NULL };
 static const char *bldn[]  = { "xbacklight", "-dec", "10", NULL };
 static const char *volup[]  = { "amixer", "set", "Master", "5%+", "unmute", NULL };
 static const char *voldn[]  = { "amixer", "set", "Master", "5%-", "unmute", NULL };
 static const char *volmute[]= { "amixer", "set", "Master", "toggle", NULL };
-static const char *cmuspa[] = {"cmus-remote", "-u", NULL};
-static const char *cmusst[] = {"cmus-remote", "-s", NULL};
+//static const char *cmuspa[] = {"cmus-remote", "-u", NULL};
+//static const char *cmusst[] = {"cmus-remote", "-s", NULL};
 static const char *cmustn[] = {"cmus-remote", "-n", NULL};
 static const char *cmustp[] = {"cmus-remote", "-r", NULL};
+static const char *xrand1[] = {"xrandr", "--output", "eDP-1", "--auto", NULL};
+static const char *xrand2[] = {"xrandr", "--output", "eDP-1", "--off", NULL};
 
 static Key keys[] = {
     /* modifier                     key        function        argument */
@@ -101,8 +103,8 @@ static Key keys[] = {
     { 0,                            0x1008ff13,spawn,          {.v = volup } },
     { 0,                            0x1008ff12,spawn,          {.v = volmute } },
     /* CMUS controls                                                            */
-    {MODKEY|ControlMask,            XK_c,   spawn,          {.v = cmuspa } },
-    {MODKEY|ControlMask,            XK_v,    spawn,          {.v = cmusst } },
+    {MODKEY|ControlMask,            XK_c,   spawn,          {.v = xrand1 } },
+    {MODKEY|ControlMask,            XK_v,    spawn,          {.v = xrand2 } },
     {MODKEY|ControlMask,            XK_b,  spawn,          {.v = cmustn } },
     {MODKEY|ControlMask,            XK_z,   spawn,          {.v = cmustp } },
     /* Tag keys                                                                 */
